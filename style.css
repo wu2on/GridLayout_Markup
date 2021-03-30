@@ -94,19 +94,25 @@ select {
 }
 
 .gallary {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
+  display: grid;
 }
 
 .card {
+  overflow: hidden;
   width: 16rem;
   height: 16rem;
 }
 
 .project {
   padding-top: 4rem;
+  filter: grayscale(0);
+  transition: transform .5s, filter 1.5s ease-in-out;
   background-color: #f35e59;
+}
+
+.project:hover {
+  transform: rotate(25deg);
+  filter: grayscale(100%);
 }
 
 .card-image {
@@ -117,7 +123,13 @@ select {
 .image {
   height: 100%;
   object-fit: cover;
+  transition: transform .5s ease;
 }
+
+.image:hover {
+  transform: scale(1.5);
+}
+
 .container {
   text-align: -webkit-center;
 }
@@ -131,7 +143,8 @@ select {
   height: 66px;
   margin-top: .75rem;
   border: 3px solid;
-  border-radius: 100px
+  border-radius: 100px;
+  cursor: pointer;
  }
  
  .gg-chevron-down-o::after {
@@ -147,6 +160,10 @@ select {
   left: 21px;
   top: 19px
  } 
+
+ input[type="checkbox"] {
+  display: none;
+ }
 
  .rectangle {
    width: 1rem;
@@ -185,10 +202,6 @@ select {
   border: 1px solid #ced4da;
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
- }
-
- .bggray .container {
-   width: 681px;
  }
 
  .form-control::placeholder {
@@ -252,7 +265,8 @@ select {
   border-color: #515151;
 }
 
-.close-container{
+.close-container {
+  display: none;
   top: -18px;
   right: -32px;
   position: absolute;
@@ -261,7 +275,7 @@ select {
   cursor: pointer;
 }
 
-.leftright{
+.leftright {
   height: 2px;
   width: 22px;
   position: absolute;
@@ -271,7 +285,7 @@ select {
   transition: all .3s ease-in;
 }
 
-.rightleft{
+.rightleft {
   height: 2px;
   width: 22px;
   position: absolute;
@@ -334,6 +348,10 @@ select {
   border: none;
 }
 
+input#chevron:checked + .hide-form {
+  display: none;
+}
+
 footer {
   padding: 1.5rem 0;
   text-align: center;
@@ -343,33 +361,24 @@ footer {
   background-color: #515151;
 }
 
-@media (min-width: 1279px) { 
+@media (min-width: 512px) {
   .gallary {
-    padding: 0 128px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 1023px) { 
+@media (min-width: 768px) {
   .gallary {
-    padding: 0 128px;
+    grid-template-columns: repeat(3, 1fr);
   }
-}
-
-@media (max-width: 767px) { 
-  .gallary {
-    padding: 0;
-  }
-  .form-details {
-    padding: 3.125rem 1rem;
-  }
-  .bggray .container {
-    width: auto;
-    padding: 0 1rem;
-  }
-}
-
-@media (max-width: 660px) {
   .close-container {
-    display: none;
+    display: initial;
   }
 }
+
+@media (min-width: 1024px) {
+  .gallary {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
