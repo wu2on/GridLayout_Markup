@@ -325,7 +325,7 @@ select {
   border-radius: 3px;
 }
 
-.social-links ul li:first-child {
+.social-links ul li:hover{
   border: 2px solid #dd2b23;
 }
 
